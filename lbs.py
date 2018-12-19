@@ -33,17 +33,17 @@ app.config.update(
     MAIL_SERVER='smtp.gmail.com',
     MAIL_PORT=465,
     MAIL_USE_SSL=True,
-    MAIL_USERNAME = 'compruebaGaspar@gmail.com',
-    MAIL_PASSWORD = 'gasparProject',
+    MAIL_USERNAME = 'xxxxxx@gmail',
+    MAIL_PASSWORD = 'xxxxxxxxxxxxx',
     MAIL_DEFAULT_SENDER ='SECURITY_EMAIL_SENDER'
     )
 
 MAIL_SERVER='smtp.gmail.com',
 MAIL_PORT=587,
 MAIL_USE_TLS=True,
-MAIL_USERNAME = 'compruebaGaspar@gmail.com',
-MAIL_PASSWORD = 'gasparProject'
-app.config['SECURITY_EMAIL_SENDER'] = 'compruebaGaspar@gmail.com'
+MAIL_USERNAME = 'xxxxxxxxxxx@gmail',
+MAIL_PASSWORD = 'xxxxxxxx'
+app.config['SECURITY_EMAIL_SENDER'] = 'xxxxxxx@gmail.com'
 mail = Mail(app)
 
 
