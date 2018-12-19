@@ -1,0 +1,15 @@
+{% extends 'layoutTrashReporter.html' %}
+{% from "_form_macros.html" import render_field %}
+
+
+{% block body %}
+  <h1>Reset Password</h1>
+<form action="{{ url_for('confirmUser_with_token', token=token) }}" method="POST">
+     {{ form.csrf_token }}
+
+
+        <button type="submit" class="btn btn-success btn-lg">Confirm registration</button>
+</form>
+
+
+{% endblock %}

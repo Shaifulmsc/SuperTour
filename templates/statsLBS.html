@@ -1,0 +1,19 @@
+{% extends 'layoutTrashReporter.html' %}
+
+{% block body %}
+
+<script> 
+$.ajax({
+    type: 'GET',
+    
+    url: "{{ url_for('stats') }}",
+    data:  "{{ data }}", // serializes the form's elements.
+    success: function (data) {
+        alert(JSON.stringify(data));
+        // take points and put in a list
+        // make new layers ub keafket
+    
+    }});
+</script>
+
+{% endblock %}

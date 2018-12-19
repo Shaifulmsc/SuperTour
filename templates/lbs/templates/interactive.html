@@ -1,0 +1,74 @@
+{% extends 'layoutTrashReporter.html' %}
+{% block body %}
+
+<head>
+        <script type=text/javascript>
+        var ladLong = [];
+
+        $( document ).ready(function() {
+        	 function getLocation() {
+        	        var options = {
+        	                enableHighAccuracy: true,
+        	                timeout: 6000
+        	        }
+        	        if (navigator.geolocation) {
+        	            navigator.geolocation.getCurrentPosition(showPosition, locationError, options);
+        	        }  else {
+        	          alert("Geolocation API is not supported in your browser.");
+        	        }}
+        	        
+        	    function showPosition(position) {
+        	        alert(1);
+
+        	        ladLong.push(position.coords.latitude, position.coords.longitude);
+        	    }
+        	    function locationError(error){
+        	        switch (error.code) {
+        	            case error.PERMISSION_DENIED:
+        	                alert("Denied request for Geolocation.");
+        	                break;
+        	            case error.POSITION_UNAVAILABLE:
+        	                alert("Geolocation unavailable.");
+        	                break;
+        	            case error.TIMEOUT:
+        	                alert("Geolocation request timed out.");
+        	                break;
+        	            case error.UNKNOWN_ERROR:
+        	                alert("Unknown Geolocation error.");
+        	                break;
+        	        }       
+        	    }
+        	    
+
+
+        	    getLocation();
+    });
+       
+       
+            $(function() {
+              $('a#process_input').bind('click', function() {
+                $.getJSON('/background_process', function(data) {
+                	 var text = $('#result2');
+                     text.val(ladLong[0]); 
+                     var text = $('#result3');
+                     text.val(ladLong[1]); 
+                });
+                return false;
+              });
+            });
+        </script>
+    </head>
+
+
+    <body>
+        <div class='container'>
+        <h3>Welcome! Which is the best programming language of them all?</h3>
+            <form>
+                <input type=text size=5 name=proglang id=result2>
+                <input type=text size=5 name=proglang id=result3>
+                <a href=# id=process_input><button class='btn btn-default'>Geolocation</button></a>
+            </form>
+        <p id=result></p>
+        </div>
+    </body>
+{% endblock %}

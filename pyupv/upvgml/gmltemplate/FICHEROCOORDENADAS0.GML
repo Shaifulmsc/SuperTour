@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Parcela Catastral de la D.G. del Catastro.-->
+<gml:FeatureCollection gml:id="ES.SDGC.CP" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:ogc="http://www.opengis.net/ogc" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:cp="urn:x-inspire:specification:gmlas:CadastralParcels:3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:x-inspire:specification:gmlas:CadastralParcels:3.0 http://inspire.ec.europa.eu/schemas/cp/3.0/CadastralParcels.xsd">
+<gml:featureMember>
+	<cp:CadastralParcel gml:id="ES.SDGC.CP.03102A00100152">
+
+		<gml:boundedBy>
+		<gml:Envelope srsName="urn:ogc:def:crs:EPSG::25830">
+		  <gml:lowerCorner>750519.82 4305100.68</gml:lowerCorner>
+		  <gml:upperCorner>750625.69 4305208.65</gml:upperCorner>
+		</gml:Envelope>
+		</gml:boundedBy>
+
+		<cp:areaValue uom="m2">5317</cp:areaValue>
+		<cp:beginLifespanVersion>2012-07-12T00:00:00</cp:beginLifespanVersion>
+		<cp:endLifespanVersion xsi:nil="true" nilReason="other:unpopulated"></cp:endLifespanVersion>
+		<cp:geometry>
+			<gml:MultiSurface gml:id="MultiSurface_ES.SDGC.CP.03102A00100152" srsName="urn:ogc:def:crs:EPSG::25830">
+			  <gml:surfaceMember>
+				  <gml:Surface gml:id="Surface_ES.SDGC.CP05102A00800158.1" srsName="urn:ogc:def:crs:EPSG::25830">
+				  <gml:patches>
+					  <gml:PolygonPatch>
+						  <gml:exterior>
+							  <gml:LinearRing>
+								  <gml:posList srsDimension="2" count="24">
+									  750542.46 4305100.68 750531.14 
+									  4305114.95 750519.82 4305131.24 750520.42 4305134.36 750522.95 4305137.4 
+									  750526.54 4305140.54 750532.84 4305146.8 750535.23 4305148.42 750546.49 
+									  4305158.35 750548.15 4305162.33 750549.45 4305165.45 750550.97 4305170.77 
+									  750552.64 4305177.46 750555.85 4305188.47 750556.14 4305189.48 750564.55 
+									  4305208.65 750581.2 4305191.07 750596.07 4305172.1 750609.15 4305157.52 
+									  750612.2 4305154.13 750622.77 4305141.17 750625.69 4305137.2 750587.68 
+									  4305121.59 750542.46 4305100.68
+								  </gml:posList>
+							  </gml:LinearRing>
+						  </gml:exterior>
+					  </gml:PolygonPatch>
+				  </gml:patches>
+				  </gml:Surface>
+			  </gml:surfaceMember>
+			</gml:MultiSurface>
+		</cp:geometry>
+		<cp:inspireId xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2">
+			<base:Identifier>
+			  <base:localId>03102A00100152</base:localId>
+			  <base:namespace>ES.SDGC.CP</base:namespace>
+			</base:Identifier>
+		</cp:inspireId>
+		<cp:label>152</cp:label>
+		<cp:nationalCadastralReference>03102A00100152</cp:nationalCadastralReference>
+		<cp:referencePoint>
+			<gml:Point gml:id="ReferencePoint_ES.SDGC.CP.03102A00100152" srsName="urn:ogc:def:crs:EPSG::25830">
+			  <gml:pos>750575.59 4305140.13</gml:pos>
+			</gml:Point>
+		</cp:referencePoint>
+		<cp:validFrom>2012-07-12T00:00:00</cp:validFrom>
+		<cp:validTo xsi:nil="true" nilReason="other:unpopulated"></cp:validTo>
+		<cp:zoning xlink:href="#ES.SDGC.CP.Z.05102A008"></cp:zoning>
+	</cp:CadastralParcel>
+</gml:featureMember>
+</gml:FeatureCollection>

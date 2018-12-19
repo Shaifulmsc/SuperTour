@@ -1,0 +1,281 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.4.15
+-- Dumped by pg_dump version 9.6.6
+
+-- Started on 2018-11-15 18:25:25 CET
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 9 (class 2615 OID 94914)
+-- Name: d; Type: SCHEMA; Schema: -; Owner: postgres
+--
+
+CREATE SCHEMA d;
+
+
+ALTER SCHEMA d OWNER TO postgres;
+
+--
+-- TOC entry 1 (class 3079 OID 11893)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 3402 (class 0 OID 0)
+-- Dependencies: 1
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+--
+-- TOC entry 2 (class 3079 OID 93516)
+-- Name: postgis; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS postgis WITH SCHEMA public;
+
+
+--
+-- TOC entry 3403 (class 0 OID 0)
+-- Dependencies: 2
+-- Name: EXTENSION postgis; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION postgis IS 'PostGIS geometry, geography, and raster spatial types and functions';
+
+
+SET search_path = d, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 193 (class 1259 OID 94959)
+-- Name: point; Type: TABLE; Schema: d; Owner: postgres
+--
+
+CREATE TABLE point (
+    gid integer NOT NULL,
+    longitude double precision,
+    latitude double precision,
+    geom public.geometry(Point,3857),
+    trash_type character varying NOT NULL,
+    trash_time timestamp without time zone,
+    cp_file_name character varying,
+    remove_access boolean DEFAULT false
+);
+
+
+ALTER TABLE point OWNER TO postgres;
+
+--
+-- TOC entry 192 (class 1259 OID 94957)
+-- Name: point_gid_seq; Type: SEQUENCE; Schema: d; Owner: postgres
+--
+
+CREATE SEQUENCE point_gid_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE point_gid_seq OWNER TO postgres;
+
+--
+-- TOC entry 3404 (class 0 OID 0)
+-- Dependencies: 192
+-- Name: point_gid_seq; Type: SEQUENCE OWNED BY; Schema: d; Owner: postgres
+--
+
+ALTER SEQUENCE point_gid_seq OWNED BY point.gid;
+
+
+--
+-- TOC entry 191 (class 1259 OID 94922)
+-- Name: user; Type: TABLE; Schema: d; Owner: postgres
+--
+
+CREATE TABLE "user" (
+    gid integer NOT NULL,
+    email character varying NOT NULL,
+    encrypted_password character varying NOT NULL,
+    remove_access boolean DEFAULT false,
+    requestaccess character varying
+);
+
+
+ALTER TABLE "user" OWNER TO postgres;
+
+--
+-- TOC entry 190 (class 1259 OID 94920)
+-- Name: user_gid_seq; Type: SEQUENCE; Schema: d; Owner: postgres
+--
+
+CREATE SEQUENCE user_gid_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE user_gid_seq OWNER TO postgres;
+
+--
+-- TOC entry 3405 (class 0 OID 0)
+-- Dependencies: 190
+-- Name: user_gid_seq; Type: SEQUENCE OWNED BY; Schema: d; Owner: postgres
+--
+
+ALTER SEQUENCE user_gid_seq OWNED BY "user".gid;
+
+
+--
+-- TOC entry 3265 (class 2604 OID 94962)
+-- Name: point gid; Type: DEFAULT; Schema: d; Owner: postgres
+--
+
+ALTER TABLE ONLY point ALTER COLUMN gid SET DEFAULT nextval('point_gid_seq'::regclass);
+
+
+--
+-- TOC entry 3263 (class 2604 OID 94925)
+-- Name: user gid; Type: DEFAULT; Schema: d; Owner: postgres
+--
+
+ALTER TABLE ONLY "user" ALTER COLUMN gid SET DEFAULT nextval('user_gid_seq'::regclass);
+
+
+--
+-- TOC entry 3394 (class 0 OID 94959)
+-- Dependencies: 193
+-- Data for Name: point; Type: TABLE DATA; Schema: d; Owner: postgres
+--
+
+COPY point (gid, longitude, latitude, geom, trash_type, trash_time, cp_file_name, remove_access) FROM stdin;
+63	934407	6275627	0101000020110F0000000000000E842C41000000C08AF05741	Papier	2018-11-14 19:56:37.748213		f
+64	2.23399999999999999	1.12355999999999989	0101000020110F0000AC1C5A643BDF01400A80F10C1AFAF13F	Other	2018-11-15 16:31:31.287021	index.jpeg	f
+66	78678678	7907907079	0101000020110F0000000000582AC29241000070609175FD41	Wertsteff	2018-11-15 16:41:51.914898		f
+\.
+
+
+--
+-- TOC entry 3406 (class 0 OID 0)
+-- Dependencies: 192
+-- Name: point_gid_seq; Type: SEQUENCE SET; Schema: d; Owner: postgres
+--
+
+SELECT pg_catalog.setval('point_gid_seq', 66, true);
+
+
+--
+-- TOC entry 3392 (class 0 OID 94922)
+-- Dependencies: 191
+-- Data for Name: user; Type: TABLE DATA; Schema: d; Owner: postgres
+--
+
+COPY "user" (gid, email, encrypted_password, remove_access, requestaccess) FROM stdin;
+4	pyair86@gmail.com1	$5$rounds=535000$RnbulygB7u9AfHcF$Exr/38VNj9FgNpr3PPNz7amNSKT5oXYOacRGXVZMuV9	f	\N
+5	pyair1@walla.co.il	$5$rounds=535000$OehDH4pia6/KiVIL$1gd.zJqJBy/daB1nfEWfC2JzzKyMAiR5tMq540Mhb0A	f	\N
+1	pyair86@gmail.com	$5$rounds=535000$lnL1i6xeqbfHpkeb$lsiobA9HX.YUi3.SinTbQS5dXKnYP1fAGre7Zymp3a3	t	\N
+7	pyair1@walla.co.iljkhkjhjk	$5$rounds=535000$/iZtdYZDeKguUhYI$GW50YBIdg72kx6vaeV1zXm5LvSr2wnWkV4UXZyhmKl1	f	No
+8	pyair1@walla.co.il12	$5$rounds=535000$Uwyp1s/NMBBInE8O$1VDYHyz4wGjxye8NAvoqzjDrZOKuRwAxM..vSX/EYu9	f	Yes
+\.
+
+
+--
+-- TOC entry 3407 (class 0 OID 0)
+-- Dependencies: 190
+-- Name: user_gid_seq; Type: SEQUENCE SET; Schema: d; Owner: postgres
+--
+
+SELECT pg_catalog.setval('user_gid_seq', 8, true);
+
+
+SET search_path = public, pg_catalog;
+
+--
+-- TOC entry 3262 (class 0 OID 93812)
+-- Dependencies: 176
+-- Data for Name: spatial_ref_sys; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY spatial_ref_sys  FROM stdin;
+\.
+
+
+SET search_path = d, pg_catalog;
+
+--
+-- TOC entry 3272 (class 2606 OID 94967)
+-- Name: point point_pkey; Type: CONSTRAINT; Schema: d; Owner: postgres
+--
+
+ALTER TABLE ONLY point
+    ADD CONSTRAINT point_pkey PRIMARY KEY (gid);
+
+
+--
+-- TOC entry 3268 (class 2606 OID 94932)
+-- Name: user uniqueness; Type: CONSTRAINT; Schema: d; Owner: postgres
+--
+
+ALTER TABLE ONLY "user"
+    ADD CONSTRAINT uniqueness UNIQUE (email);
+
+
+--
+-- TOC entry 3274 (class 2606 OID 94969)
+-- Name: point uniquenessgeom; Type: CONSTRAINT; Schema: d; Owner: postgres
+--
+
+ALTER TABLE ONLY point
+    ADD CONSTRAINT uniquenessgeom UNIQUE (geom);
+
+
+--
+-- TOC entry 3270 (class 2606 OID 94930)
+-- Name: user user_pkey; Type: CONSTRAINT; Schema: d; Owner: postgres
+--
+
+ALTER TABLE ONLY "user"
+    ADD CONSTRAINT user_pkey PRIMARY KEY (gid);
+
+
+--
+-- TOC entry 3401 (class 0 OID 0)
+-- Dependencies: 7
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2018-11-15 18:25:28 CET
+
+--
+-- PostgreSQL database dump complete
+--
+

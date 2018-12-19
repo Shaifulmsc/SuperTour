@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+encoding//pg_operations/check.py=utf-8
+encoding//pg_operations/pg_connect.py=utf-8
+encoding//pg_operations/pg_insert.py=utf-8
+encoding//pg_operations/pg_select.py=utf-8
+encoding//pg_operations/transform_coords_ol_to_postgis.py=utf-8
+encoding//pg_operations2/pg_operations2.py=utf-8
+encoding//upvgml/gml_inspire.py=utf-8
+encoding//upvgml/upvgml.py=utf-8

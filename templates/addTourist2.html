@@ -1,0 +1,58 @@
+{% extends 'layoutLBS.html' %}
+
+{% block body %}
+
+
+  <h1>Add Tourist</h1>
+  
+  
+  {% from "includes/_formhelpers.html" import render_field %}
+  
+    <form  action="" method="post" name="simple" enctype="multipart/form-data" id='point2'>
+  
+  
+    <div class="form-group">
+      {{render_field(form.city, id="result", class_="form-control")}}
+    </div>
+
+    <div class="form-group">
+      {{render_field(form.age, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.maxbudget, class_="form-control")}}
+    </div>
+
+    
+    
+
+
+    <div class="form-horizontal">
+   <div id="radios3" class="btn-group view-opt-btn-group" data-toggle="buttons-radio">
+                   <h3>Gender:</h3>
+     <p> <h4>{{ form.gender}} <p> </h4>
+     
+     
+                        <h3>Country:</h3>
+     
+     <p> <h4>{{form.country}}<p> </h4>
+                <h3>Vegetarian:</h3>
+          <p> <h4>{{ form.veg}} </h4></p>
+                             <h3>Products</h3>
+          
+               <p> <h4>{{ form.top1}} </h4></p>
+               <p> <h4>{{ form.top2}} </h4></p>
+               <p> <h4>{{ form.top3}} </h4></p>
+     
+   
+
+</div>
+    </div>
+    <p><input type="submit" class="btn btn-primary" value="Submit"></p>
+  </form>
+  
+  
+
+
+
+
+{% endblock %}

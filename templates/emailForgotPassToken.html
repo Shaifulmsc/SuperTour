@@ -1,0 +1,20 @@
+{% extends 'layoutTrashReporter.html' %}
+{% from "_form_macros.html" import render_field %}
+
+
+{% block body %}
+  <h1>Reset Password</h1>
+<form action="{{ url_for('resetPass_with_token', token=token) }}" method="POST">
+     {{ form.csrf_token }}
+        <div class="form-group">
+      {{render_field(form.password, class_="form-control")}}
+    </div>
+    <div class="form-group">
+      {{render_field(form.confirm, class_="form-control")}}
+    </div>
+
+        <button type="submit" class="btn btn-success btn-lg">Submit</button>
+</form>
+
+
+{% endblock %}

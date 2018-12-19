@@ -1,0 +1,100 @@
+{% extends 'layoutLBS.html' %}
+
+{% block body %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="//cdn.datatables.net/1.10.6/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+        <link href="//cdn.datatables.net/tabletools/2.2.4/css/dataTables.tableTools.css" rel="stylesheet" type="text/css" />
+        <link href="/Editor-1.4.2/css/dataTables.editor.css" rel="stylesheet" type="text/css" />
+        <link href="../css/selectize.css" rel="stylesheet" type="text/css"/>
+        <!-- SCRIPTS !-->
+
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script src="//cdn.datatables.net/tabletools/2.2.4/js/dataTables.tableTools.min.js" ></script>
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"></script>
+
+          <table id="myTable2" class="table table-striped" style="width:100%" >
+            <thead>
+              <tr>
+            <th>gid</th>  
+            <th>geom</th>
+                               
+          </tr>
+        </thead> 
+          </table>  
+          
+          
+<script>
+
+
+
+$(document).ready(function() {
+    var events = $('#events');
+    var table = $('#myTable2').DataTable( {
+        dom: 'Bfrtip',
+        idSrc:  'id',
+        select: true,
+        
+
+        buttons: [
+            {
+                text: 'Remove selected rows',
+                action: function () {
+                    //var count = table.rows( { selected: true } ).count();
+                    //var confirm = confirm("Estas seguro que quieres eliminar este trabajo?");
+                    var r = confirm("Delete this point?");
+                    if (r==true){var data = table.row( { selected: true } ).data();
+                    data.DT_RowId;
+                    table.rows( { selected: true } )
+                    .remove()
+                    .draw();
+                    
+                    
+                    //events.prepend( '<div>'+count+' row(s) selected</div>' );               
+                    $.ajax({
+                        type: 'POST',
+                        
+                        url: '/deleteRowSim/'+data.gid ,
+                        data: data.DT_RowId=data.gid,
+                        success: function(){
+                            alert("good");
+                        }
+                    })}
+                    
+                }
+            
+            
+            }
+        ],
+        "processing": true,
+        "ajax": '/interactive2',
+        idSrc:  'gid',
+
+        // add column definitions to map your json to the table                                           
+        "columns": [
+            {data: "gid"},
+            {data: "geom"}
+
+        ]
+        
+    } );
+} );
+
+        
+    </script>
+  <div class="jumbotron text-center">
+    <h1>Welcome To FlaskApp</h1>
+    <p class="lead">This application is built on the Python Flask framework and is the focus for the "Python Flask From Scratch" YouTube series</p>
+    {% if session.logged_in == NULL %}
+      <a href="/register" class="btn btn-primary btn-lg">Register</a>
+      <a href="/login" class="btn btn-success btn-lg">Login</a>
+    {% endif %}
+    
+    
+    
+  </div>
+  
+ 
+{% endblock %}
